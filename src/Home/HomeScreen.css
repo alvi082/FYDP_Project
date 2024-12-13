@@ -1,0 +1,296 @@
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fefdff; /* Darker background for contrast */
+    color: white;
+}
+
+.logo{
+    font-size: 28px; /* Slightly larger font for the logo */
+    color: #ff5722;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+    transition: transform 0.3s ease; /* Hover effect for the logo */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.actions {
+    display: flex;
+    gap: 20px; /* Increased gap between the buttons */
+}
+
+/* Button base style */
+.button {
+    padding: 8px 20px; /* Adjust padding for more balanced size */
+    font-size: 14px; /* Slightly smaller font size for better proportion */
+    font-weight: 600; /* Bold text for better visibility */
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px; /* Slightly rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth hover effect */
+    min-width: 120px; /* Ensure buttons have a minimum width but not too large */
+    height: 40px;
+    text-align: center; /* Align text to the center */
+}
+
+/* Default button color */
+.button.contact-button {
+    background-color: #2980b9; /* Blue color for Contact Us button */
+}
+
+
+.button.contact-button:hover {
+    background-color: #1f6fa6; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale effect for hover */
+}
+
+/* Login button color */
+.button.login-button {
+    background-color: #e74c3c; /* Red color for Login button */
+}
+
+.button.login-button:hover {
+    background-color: #c0392b; /* Darker red for hover */
+    transform: scale(1.05); /* Slight scale effect for hover */
+}
+
+/* Search Section */
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: #e8e3f3; /* Lighter background for search area */
+}
+
+.search-text {
+    max-width: 50%;
+    margin-right: 20px;
+}
+
+.search-container h1 {
+    font-size: 36px;
+    color: #0e0815; /* Darker text for heading */
+}
+
+.search-container p {
+    font-size: 18px;
+    color: #7f8c8d; /* Gray text for subtext */
+    margin-bottom: 20px;
+}
+
+.search-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-inputs input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px; /* Default width */
+}
+
+.search-button {
+    padding: 12px 25px;
+    background-color: #ff5722;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #2980b9;
+}
+
+.search-image {
+    background-image: url('home.png'); /* Replace with your image URL */
+    background-size: contain;
+    background-position: center;
+    width: 45%;
+    height: 250px;
+    background-repeat: no-repeat;
+}
+
+/* Featured Jobs Section */
+.featured-jobs {
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.featured-jobs h2 {
+    font-size: 28px;
+    color: #7f47ec;
+    margin-bottom: 20px;
+}
+
+.jobs-list {
+    display: flex;
+    gap: 20px;
+}
+
+.job-card {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.job-card:hover {
+    transform: translateY(-10px); /* Hover effect */
+}
+
+.job-card h3 {
+    font-size: 20px;
+    color: #7e2ae4;
+    margin-bottom: 10px;
+}
+
+.job-card p {
+    margin: 5px 0;
+    color: #7f8c8d;
+}
+
+.apply-button {
+    padding: 12px 20px;
+    background-color: #27ae60; /* Green for Apply button */
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.apply-button:hover {
+    background-color: #2ecc71; /* Lighter green for hover */
+}
+
+/* Footer Section */
+/* Footer Section */
+.footer {
+    background-color: #f4f4f4;
+    padding: 40px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #f04f24;
+    font-size: 16px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #d43e1b;
+}
+
+.footer-bottom {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.footer-bottom a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer-bottom a:hover {
+    color: #f04f24;
+}
+
+
+.company-logos img {
+    width: 80px;
+    margin: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.company-logos img:hover {
+    transform: scale(1.1); /* Hover effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-container {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .search-text {
+        max-width: 100%;
+        margin-right: 0;
+    }
+
+    .search-inputs input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-image {
+        width: 80%;
+        height: 150px;
+    }
+
+    .jobs-list {
+        flex-direction: column;
+    }
+
+    .job-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .search-container h1 {
+        font-size: 28px;
+    }
+
+    .search-container p {
+        font-size: 16px;
+    }
+}

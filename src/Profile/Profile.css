@@ -1,0 +1,244 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.4;
+}
+
+.profile-dashboard {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-dashboard:hover {
+    transform: scale(1.02);
+}
+
+/* Back Button Styling */
+.back-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Profile Form Container */
+.profile-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.upload-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.upload-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.upload-btn:hover {
+    background-color: #bdc3c7;
+    transform: translateY(-2px);
+}
+
+.profile-img {
+
+    width: 100px; /* Width of the profile image */
+    height: 100px; /* Height of the profile image */
+    border-radius: 50%; /* Makes the image circular */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image inside the circle */
+    margin: 0 auto; /* Center the image horizontally */
+    background-image: url("Alvi.jpg");
+    object-fit: cover;
+    border: 3px solid #ecf0f1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+form {
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-control {
+    flex: 1;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #7f8c8d;
+}
+
+input,
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.valid-indicator {
+    color: green;
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    flex: 1;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-btn {
+    border: 2px solid #3498db;
+    background-color: white;
+    color: #3498db;
+}
+
+.save-btn {
+    border: none;
+    background-color: #3498db;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #ecf4fd;
+    color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.save-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .cancel-btn {
+        margin-bottom: 10px;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .upload-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    input,
+    select {
+        padding: 8px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .upload-btn {
+        font-size: 0.8rem;
+        padding: 7px 12px;
+    }
+
+    input,
+    select {
+        font-size: 0.8rem;
+        padding: 7px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        font-size: 0.8rem;
+    }
+}

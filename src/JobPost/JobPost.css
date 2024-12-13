@@ -1,0 +1,209 @@
+/* Container for the job posting form */
+.job-post-form {
+    max-width: 600px; /* Control max width */
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Title styling */
+.job-post-form h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px; /* Larger space below the title */
+    font-weight: 700;
+    letter-spacing: 1px; /* Slight letter spacing for elegance */
+}
+
+/* Description text styling */
+.job-post-form p {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.7; /* Increased line height for better readability */
+}
+
+/* General form layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Row-based form elements */
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Form group with proper spacing */
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styling */
+label {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 8px; /* More space between label and input */
+    font-weight: 500;
+}
+
+/* Styling for inputs, select dropdowns, and textareas */
+input,
+select,
+textarea {
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect for inputs */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #f04f24;
+    box-shadow: 0 0 8px rgba(240, 79, 36, 0.3);
+}
+
+/* Textarea specific styling */
+textarea {
+    resize: none;
+    height: 100px; /* Taller textarea for more content */
+}
+
+/* Button styling */
+.post-job-btn {
+    background-color: #f04f24;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button hover effect */
+.post-job-btn:hover {
+    background-color: #d43e1b;
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #f4f4f4;
+    padding: 40px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #f04f24;
+    font-size: 16px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #d43e1b;
+}
+
+.footer-bottom {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.footer-bottom a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer-bottom a:hover {
+    color: #f04f24;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column; /* Stack inputs vertically */
+        gap: 15px; /* Adjust gap for smaller screens */
+    }
+
+    .job-post-form {
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    /* Adjust button size for mobile */
+    .post-job-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .footer-container {
+        padding: 0 15px; /* Adjust padding in footer */
+    }
+
+    .footer h3 {
+        font-size: 20px; /* Smaller header size */
+    }
+
+    .footer p {
+        font-size: 13px; /* Smaller text in footer */
+    }
+}
+
+@media (max-width: 480px) {
+    .job-post-form {
+        padding: 15px; /* Further reduce padding for very small screens */
+    }
+
+    /* Ensure title size is smaller on very small screens */
+    .job-post-form h1 {
+        font-size: 20px;
+    }
+
+    .footer h3 {
+        font-size: 18px;
+    }
+
+    .footer p {
+        font-size: 12px;
+    }
+}

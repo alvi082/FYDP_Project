@@ -1,0 +1,228 @@
+/* General Styles */
+.dashboard-container {
+    padding: 15px; /* Slightly reduced padding for a more compact look */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px; /* Reduced margin for better spacing */
+}
+
+header h1 {
+    font-size: 2rem; /* Reduced font size for a more standard look */
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Summary Cards */
+.summary-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Reduced gap for better spacing */
+    justify-content: center;
+    margin-bottom: 20px; /* Reduced margin for better spacing */
+}
+
+.card {
+    background-color: #e3f2fd;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px; /* Slightly reduced border radius */
+    text-align: center;
+    font-weight: bold;
+    color: #ff5722;
+    width: 100%;
+    max-width: 250px; /* Reduced max width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px); /* Slightly reduced lift effect */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Job Category Section */
+.job-category {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: #fff9e6;
+    padding: 20px; /* Slightly reduced padding */
+    border-radius: 10px; /* Slightly reduced border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.job-info {
+    width: 100%;
+    max-width: 22%;
+    margin-bottom: 15px;
+}
+
+.cv-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 70%;
+}
+
+/* CV Item */
+.cv-item {
+    background-color: #fbe9e7;
+    padding: 12px; /* Reduced padding */
+    border-radius: 8px;
+    text-align: center;
+    font-size: 13px; /* Slightly reduced font size */
+    color: #d84315;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cv-item:hover {
+    background-color: #ffccbc;
+    transform: translateY(-4px);
+}
+
+/* Summarize Button */
+.summarize-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px; /* Reduced padding for a more standard button */
+    border-radius: 6px; /* Slightly reduced border radius */
+    cursor: pointer;
+    font-size: 14px; /* Slightly reduced font size */
+    margin-top: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.summarize-button:hover {
+    background-color: #388e3c;
+    transform: translateY(-2px);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .summary-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job-category {
+        flex-direction: column;
+    }
+
+    .job-info,
+    .cv-section {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6rem; /* Slightly smaller font for smaller screens */
+    }
+
+    .card {
+        max-width: 80%; /* Adjust card size for smaller screens */
+    }
+
+    .summarize-button {
+        padding: 8px 16px; /* Adjust button padding for smaller screens */
+        font-size: 13px;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #263238; /* Dark background for contrast */
+    color: #fff; /* White text for readability */
+    padding: 10px 0; /* Compact padding for a smaller footer */
+    margin-top: 20px; /* Space between the main content and footer */
+    text-align: center; /* Center align text */
+    font-size: 14px; /* Standard font size for readability */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px; /* Compact padding to prevent text from touching the edges */
+}
+
+.footer h3 {
+    font-size: 1.4rem; /* Slightly smaller heading */
+    margin-bottom: 5px; /* Minimal space below the heading */
+    color: #ff5722; /* Vibrant color for the heading */
+}
+
+.footer p {
+    font-size: 0.85rem; /* Slightly smaller font size */
+    margin-bottom: 5px; /* Minimal spacing between paragraphs */
+    line-height: 1.4; /* Tighten the line height for compactness */
+}
+
+.social-links {
+    margin-bottom: 10px; /* Reduce space below social links */
+}
+
+.social-links a {
+    margin: 0 6px; /* Compact spacing between social icons */
+    font-size: 1rem; /* Slightly smaller icon size */
+    color: #ff5722; /* Matching vibrant color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ffcc80; /* Light orange on hover */
+}
+
+.footer-bottom {
+    font-size: 0.8rem; /* Smaller font size for the footer bottom */
+    margin-top: 10px; /* Reduce top margin */
+}
+
+.footer-bottom a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px; /* Reduce spacing between links */
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: #ff5722; /* Vibrant color on hover for links */
+}
+
+.footer-bottom p {
+    margin-top: 5px; /* Minimal margin above the text */
+    font-size: 0.8rem; /* Reduced font size for a cleaner look */
+}
+
+/* Media Queries for Footer */
+@media (max-width: 768px) {
+    .footer h3 {
+        font-size: 1.2rem; /* Smaller heading for mobile screens */
+    }
+
+    .footer p {
+        font-size: 0.8rem; /* Reduced font size on smaller screens */
+    }
+
+    .social-links a {
+        font-size: 0.9rem; /* Smaller icons for mobile */
+    }
+
+    .footer-bottom a {
+        font-size: 0.8rem; /* Compact links for mobile */
+    }
+}

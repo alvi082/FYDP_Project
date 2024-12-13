@@ -1,0 +1,242 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eef2f5;
+    color: #333;
+}
+
+/* Main container for registration layout */
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+/* Wrapper for form and image */
+.registration-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden; /* Prevents content overflow */
+    transition: transform 0.3s ease;
+}
+
+.registration-wrapper:hover {
+    transform: scale(1.02); /* Adds a subtle hover effect */
+}
+
+/* Left section for the image */
+.registration-image {
+    flex: 1.5;
+    background-image: url("./LogReg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.registration-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.registration-image img:hover {
+    opacity: 0.9;
+}
+
+/* Right section for the form */
+.registration-form {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+}
+
+.registration-form h2 {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Input styles */
+.registration-form input {
+    width: 90%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-form input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 4px rgba(37, 117, 252, 0.5);
+    outline: none;
+}
+
+/* Password visibility toggle */
+.password-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.password-field .show-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #2575fc;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.password-field .show-password-btn:hover {
+    color: #6a11cb;
+}
+
+/* Buttons */
+.register-button {
+    background-color: #2575fc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 90%;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-button:hover {
+    background-color: #6a11cb;
+    transform: scale(1.05);
+}
+
+/* Social registration */
+.social-registration {
+    margin: 20px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-btn.google {
+    background-color: #db4437;
+}
+
+.social-btn.facebook {
+    background-color: #4267B2;
+}
+
+.social-btn.linkedin {
+    background-color: #0077b5;
+}
+
+.social-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Login link */
+.registration-form p {
+    margin-top: 15px;
+    color: #555;
+}
+
+.registration-form a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.registration-form a:hover {
+    color: #6a11cb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .registration-wrapper {
+        flex-direction: column; /* Stacks form and image vertically */
+    }
+
+    .registration-image,
+    .registration-form {
+        flex: none;
+        width: 100%;
+    }
+
+    .registration-form input,
+    .register-button {
+        width: 100%;
+    }
+}
+
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.checkmark {
+    font-size: 50px;
+    color: green;
+}
+
+.popup-content p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}

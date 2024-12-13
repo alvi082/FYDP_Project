@@ -1,0 +1,226 @@
+/* General Styles */
+.dashboard-container {
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7; /* Light background for a clean feel */
+    color: #333;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px; /* Increased margin for better spacing */
+}
+
+header h1 {
+    font-size: 2.5rem; /* Larger font size for impact */
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* Gives a modern, professional feel */
+}
+
+/* Summary Cards */
+.summary-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #e3f2fd; /* Soft blue background */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #ff5722; /* Vibrant color for text */
+    width: 100%;
+    max-width: 280px; /* Slightly larger max width */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lifting effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly more prominent shadow */
+}
+
+/* Job Category Section */
+.job-category {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: #fff9e6; /* Soft yellow background */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.job-info {
+    width: 100%;
+    max-width: 22%;
+    margin-bottom: 20px;
+}
+
+.cv-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 75%;
+}
+
+/* CV Item */
+.cv-item {
+    background-color: #fbe9e7; /* Soft peach background */
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #d84315; /* Dark orange text for a professional look */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cv-item:hover {
+    background-color: #ffccbc; /* Subtle color change on hover */
+    transform: translateY(-5px);
+}
+
+/* Summarize Button */
+.summarize-button {
+    background-color: #4caf50; /* Green for call-to-action */
+    color: #fff;
+    border: none;
+    padding: 12px 24px; /* Larger padding for a more substantial button */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px; /* Larger font size for better visibility */
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.summarize-button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .summary-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job-category {
+        flex-direction: column;
+    }
+
+    .job-info,
+    .cv-section {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem; /* Slightly smaller font for smaller screens */
+    }
+
+    .card {
+        max-width: 90%; /* Adjust card size for smaller screens */
+    }
+
+    .summarize-button {
+        padding: 10px 20px; /* Adjust button padding for smaller screens */
+        font-size: 14px;
+    }
+}
+/* Footer Styles */
+.footer {
+    background-color: #263238; /* Dark background for contrast */
+    color: #fff; /* White text for readability */
+    padding: 20px 0; /* Reduced padding for a more compact footer */
+    margin-top: 40px; /* Space between the main content and footer */
+    text-align: center; /* Center align text */
+    font-size: 14px; /* Standard font size for readability */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* Slight padding to prevent text from touching the edges */
+}
+
+.footer h3 {
+    font-size: 1.6rem; /* Slightly smaller heading for a more balanced look */
+    margin-bottom: 10px; /* Reduced margin for less space */
+    color: #ff5722; /* Vibrant color for heading */
+}
+
+.footer p {
+    font-size: 0.9rem; /* Reduced font size for a more compact paragraph */
+    margin-bottom: 10px; /* Reduced margin for tighter spacing */
+}
+
+.social-links {
+    margin-bottom: 15px; /* Reduced bottom margin */
+}
+
+.social-links a {
+    margin: 0 8px; /* Reduced margin for a more compact layout */
+    font-size: 1.1rem; /* Slightly smaller icons */
+    color: #ff5722; /* Matching vibrant color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ffcc80; /* Light orange on hover */
+}
+
+.footer-bottom {
+    font-size: 0.85rem; /* Slightly smaller text for the footer bottom */
+    margin-top: 15px; /* Reduced top margin for a more compact footer */
+}
+
+.footer-bottom a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 8px; /* Reduced margin for links */
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: #ff5722; /* Vibrant color on hover for links */
+}
+
+.footer-bottom p {
+    margin-top: 10px;
+    font-size: 0.85rem; /* Reduced font size for a cleaner look */
+}
+
+/* Media Queries for Footer */
+@media (max-width: 768px) {
+    .footer h3 {
+        font-size: 1.4rem; /* Slightly smaller heading on smaller screens */
+    }
+
+    .footer p {
+        font-size: 0.85rem; /* Reduced text size on mobile */
+    }
+
+    .social-links a {
+        font-size: 1rem; /* Smaller icons on mobile */
+    }
+
+    .footer-bottom a {
+        font-size: 0.85rem; /* Smaller links for mobile */
+    }
+}

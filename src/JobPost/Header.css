@@ -1,0 +1,111 @@
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; /* Increased padding for better spacing */
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Slightly bigger shadow for depth */
+    transition: padding 0.3s ease; /* Smooth transition for padding */
+}
+
+/* Logo Style */
+.logo h1 {
+    font-size: 28px; /* Slightly larger font for the logo */
+    color: #ff5722;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+    transition: transform 0.3s ease; /* Hover effect for the logo */
+}
+
+.logo h1:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Navigation Style */
+.header-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* Increased gap for better spacing between links */
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav ul li {
+    position: relative;
+}
+
+.header-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.header-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff5722;
+    transition: width 0.3s ease;
+}
+
+.header-nav ul li a:hover {
+    color: #ff5722;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.header-nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Logout Button Style */
+.logout-button {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 12px 24px; /* Larger padding for better button appearance */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Larger text size */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px; /* Reduced padding for smaller screens */
+    }
+
+    .header-nav ul {
+        flex-direction: column; /* Stack the nav items vertically */
+        align-items: center; /* Center align the nav items */
+        gap: 15px;
+    }
+
+    .logo h1 {
+        font-size: 24px; /* Slightly smaller font on mobile */
+    }
+
+    .logout-button {
+        width: 100%; /* Make logout button full-width on mobile */
+        padding: 14px 0; /* Full-width button padding */
+        font-size: 18px; /* Larger font for better accessibility */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-nav ul li a {
+        font-size: 14px; /* Smaller font size for very small screens */
+    }
+}

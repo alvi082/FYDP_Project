@@ -1,0 +1,270 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eef2f5;
+    color: #333;
+}
+
+/* Main container for login layout */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #ecf1f3;
+}
+
+/* Wrapper for form and image */
+.login-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden; /* Prevents content overflow */
+    transition: transform 0.3s ease;
+}
+
+.login-wrapper:hover {
+    transform: scale(1.02); /* Adds a subtle hover effect */
+}
+
+/* Left section for the image */
+.login-image {
+    flex: 1.5;
+    background-image: url("./LogReg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.login-image img:hover {
+    opacity: 0.9;
+}
+
+
+/* Right section for the form */
+.login-form {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Input styles */
+.login-form input {
+    width: 90%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 4px rgba(37, 117, 252, 0.5);
+    outline: none;
+}
+
+/* Remember me and forgot password */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 16px; /* Compact size */
+    height: 16px; /* Compact size */
+    margin-right: 4px; /* Reduce spacing between the checkbox and label */
+    cursor: pointer; /* Improve interactivity */
+}
+
+.remember-me label {
+    margin: 0; /* No extra margin */
+}
+
+.remember-me a {
+    margin-left: auto; /* Push link to the far right */
+    color: #2575fc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.remember-me a:hover {
+    color: #6a11cb;
+}
+
+/* Buttons */
+.login-button {
+    background-color: #2575fc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 90%;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+    background-color: #6a11cb;
+    transform: scale(1.05);
+}
+
+/* Social login */
+.social-login {
+    margin: 20px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-btn.google {
+    background-color: #db4437;
+}
+
+.social-btn.facebook {
+    background-color: #4267B2;
+}
+
+.social-btn.linkedin {
+    background-color: #0077b5;
+}
+
+.social-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Registration link */
+.login-form p {
+    margin-top: 15px;
+    color: #555;
+}
+
+.login-form a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-form a:hover {
+    color: #6a11cb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column; /* Stacks form and image vertically */
+    }
+
+    .login-image,
+    .login-form {
+        flex: none;
+        width: 100%;
+    }
+
+    .login-form input,
+    .login-button {
+        width: 100%;
+    }
+}
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.checkmark {
+    color: green;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.popup p {
+    font-size: 18px;
+    color: green;
+    font-weight: bold;
+}
+
+/* Optional: Style the "Login" button */
+.login-button {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-button:hover {
+    background-color: #3498db;
+}
+
+/* Add styles for the form and other elements as necessary */
