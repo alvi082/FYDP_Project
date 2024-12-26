@@ -358,21 +358,21 @@ body {
 }
 
 .job-card .apply-btn{
-    background-color: #4a90e2;
+    background-color: #ff5722;
 }
 .job-card .view-btn{
-    background-color: #7f47ec;
+    background-color: #2980b9;
 }
 
 
 .job-card .view-btn:hover{
-    background-color: #357acb; /* Slightly darker blue on hover */
+    background-color: #e81010; /* Slightly darker blue on hover */
     transform: translateY(-3px); /* Lift effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow on hover */
 }
 
 .job-card .apply-btn:hover{
-    background-color: #7f47ec; /* Slightly darker blue on hover */
+    background-color: #e81010; /* Slightly darker blue on hover */
     transform: translateY(-3px); /* Lift effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow on hover */
 

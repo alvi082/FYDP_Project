@@ -98,8 +98,7 @@ function JobSearchDashboard() {
                         <label>
                             <input type="checkbox"/> Internship
                         </label>
-                    </div>
-                    <div className="filter-group">
+
                         <h4>Work Mode</h4>
                         <label>
                             <input type="checkbox"/> On-Site
@@ -110,8 +109,6 @@ function JobSearchDashboard() {
                         <label>
                             <input type="checkbox"/> Hybrid
                         </label>
-                    </div>
-                    <div className="filter-group">
                         <h4>Experience Level</h4>
                         <label>
                             <input type="checkbox"/> Fresher/Entry-Level
@@ -129,7 +126,7 @@ function JobSearchDashboard() {
                 <main className="jobs-container">
                     <h2>All Jobs ({jobs.length})</h2>
                     <div className="jobs-grid">
-                        {jobs.map((job) => (
+                    {jobs.map((job) => (
                             <div key={job.id} className="job-card">
                                 <h3>{job.title}</h3>
                                 <p>
