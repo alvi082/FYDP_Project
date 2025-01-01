@@ -1,8 +1,27 @@
-import React from "react";
+import React ,{ useState,useEffect }  from "react";
 import { Link } from "react-router-dom"; // Importing Link for navigation
 import "./Profile.css";
-
+import axios from "axios";
 const Profile = () => {
+
+    const [values,setValues]= useState({
+        username:"",
+        email:""
+      })
+      axios.defaults.withCredentials = true;
+      useEffect(()=>{
+        axios.get('http://localhost:8081/')
+        .then(res =>{
+          setValues({username: res.data.username,email : res.data.usernameemail});
+        })
+        .catch(err => console.log(err))
+    
+       },[])
+    
+       const user = {
+        username:values.username,
+        useremail:values.useremail,
+      };
     return (
         <div className="profile-dashboard">
             {/* Navbar */}
@@ -23,18 +42,15 @@ const Profile = () => {
                     <div className="form-group">
                         <div className="form-control">
                             <label>First Name</label>
-                            <input type="text" defaultValue="Md Ahanaf Mubashshir" />
+                            <input type="text" defaultValue= {user.username} />
                         </div>
-                        <div className="form-control">
-                            <label>Last Name</label>
-                            <input type="text" defaultValue="Alvi" />
-                        </div>
+                        
                     </div>
                     <div className="form-control">
                         <label>Email</label>
                         <input
                             type="email"
-                            defaultValue="malvi202262@bscse.uiu.ac.bd"
+                            defaultValue={values.email}
                         />
                         <span className="valid-indicator">&#10003;</span>
                     </div>
