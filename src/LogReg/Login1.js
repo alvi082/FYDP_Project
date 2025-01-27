@@ -6,45 +6,46 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (event) => {
+  // Function to handle login
+  const handleLogin = ( event) => {
     const values = {
-      email: email,
-      password: password,
-    };
-    event.preventDefault();
-    axios
-      .post("http://localhost:8081/auth/login", values)
-      .then((res) => {
-        if (res.data.Login) {
-          setShowPopup(true);
-          setPopupMessage("Login Successful!");
-
-          // Redirect based on user type
-          setTimeout(() => {
-            if (res.data.userType === 'jobseeker') {
+        email: email,
+        password: password,
+      };
+      event.preventDefault();
+      axios
+        .post("http://localhost:8081/login", values)
+        .then((res) => {
+          if (res.data.Login) {
+            setShowPopup(true);
+            setPopupMessage("Login Successful!");
+        
+            // Redirect to the JobSearchDashboard page after 2 seconds
+            setTimeout(() => {
               navigate("/JobSearchDashboard");
-            } else {
-              navigate("/JobPost");
-            }
-          }, 2000);
-        } else {
-          alert("Invalid email or password!");
-        }
-      })
-      .catch((err) => console.error(err));
+            }, 2000);
+          } else alert("No record found!");
+  
+          console.log(res);
+        })
+        .catch((err) => console.lot(err));
+
   };
 
   return (
     <div className="login-container">
       <div className="login-wrapper">
+        {/* Left section for the image */}
         <div className="login-image">
           {/* Add any background image or content here */}
         </div>
 
+        {/* Right section for the form */}
         <div className="login-form">
           <h2>Login</h2>
           <form onSubmit={handleLogin}>
@@ -52,7 +53,7 @@ const Login = () => {
               type="text"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="Enter email id"
+              placeholder="Enter email id / username"
             />
 
             <input
@@ -73,19 +74,6 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="register-options">
-            <p>Don't have an account?</p>
-            <div className="register-buttons">
-              <Link to="/register" className="register-btn jobseeker">
-                Register as Job Seeker
-              </Link>
-              <br />
-              <Link to="/employer/register" className="register-btn employer">
-                Register as Employer
-              </Link>
-            </div>
-          </div>
-
           <div className="social-login">
             <span>or login with</span>
             <div className="social-buttons">
@@ -94,9 +82,13 @@ const Login = () => {
               <button className="social-btn linkedin">LinkedIn</button>
             </div>
           </div>
+          <p>
+            Don’t have an account? <Link to="/register">Register</Link>
+          </p>
         </div>
       </div>
 
+      {/* Popup message */}
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

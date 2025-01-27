@@ -5,6 +5,9 @@ import cors from "cors";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import employerRoutes from './employerRoutes.js';
+import authRoutes from './authRoutes.js';
+import jobRoutes from './jobRoutes.js';
 
 const app = express();
 app.use(
@@ -28,12 +31,18 @@ app.use(
     },
   })
 );
+
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "analyzer",
 });
+
+// Use the employer routes
+app.use('/employer', employerRoutes);
+app.use('/auth', authRoutes);
+app.use('/job', jobRoutes);
 
 app.post("/signup", (req, res) => {
   const sql =
@@ -51,24 +60,19 @@ app.post("/signup", (req, res) => {
       console.error("Error in MySQL:", err);
       return res.status(500).json({ error: "Error in database" });
     }
-
     return res.status(201).json({ message: "User signed up successfully" });
   });
 });
 
 app.post("/login", (req, res) => {
-  const sql = "SELECT *FROM job_seeker WHERE email = ?  AND password = ?";
+  const sql = "SELECT * FROM job_seeker WHERE email = ? AND password = ?";
   db.query(sql, [req.body.email, req.body.password], (err, result) => {
     if (err) return res.json({ Message: "Error inside server" });
 
     if (result.length > 0) {
       req.session.username = result[0].name;
       req.session.useremail = result[0].email;
-      console.log(
-        req.session.username +
-          " " +
-          req.session.useremail
-      );
+      console.log(req.session.username + " " + req.session.useremail);
       return res.json({
         Login: true,
         username: req.session.username,
@@ -90,12 +94,21 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/job_seeker", (re, res) => {
+app.get("/job_seeker", (req, res) => {
   const sql = "SELECT * FROM job_seeker";
   db.query(sql, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
   });
+});
+
+// Test database connection
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL database');
 });
 
 app.listen(8081, () => {

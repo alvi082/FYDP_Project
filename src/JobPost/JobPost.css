@@ -1,30 +1,22 @@
 /* Container for the job posting form */
 .job-post-form {
-    max-width: 600px; /* Control max width */
-    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    padding: 20px;
 }
 
 /* Title styling */
 .job-post-form h1 {
-    font-size: 26px;
+    text-align: center;
     color: #333;
-    margin-bottom: 20px; /* Larger space below the title */
-    font-weight: 700;
-    letter-spacing: 1px; /* Slight letter spacing for elegance */
+    margin-bottom: 10px;
 }
 
 /* Description text styling */
 .job-post-form p {
+    text-align: center;
     color: #666;
-    font-size: 15px;
-    margin-bottom: 20px;
-    line-height: 1.7; /* Increased line height for better readability */
+    margin-bottom: 30px;
 }
 
 /* General form layout */
@@ -38,7 +30,7 @@ form {
 .form-row {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 /* Form group with proper spacing */
@@ -49,161 +41,159 @@ form {
 }
 
 /* Label styling */
-label {
-    font-size: 15px;
+.form-group label {
+    margin-bottom: 8px;
     color: #333;
-    margin-bottom: 8px; /* More space between label and input */
     font-weight: 500;
 }
 
 /* Styling for inputs, select dropdowns, and textareas */
-input,
-select,
-textarea {
-    padding: 12px;
-    font-size: 15px;
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 /* Focus effect for inputs */
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #f04f24;
-    box-shadow: 0 0 8px rgba(240, 79, 36, 0.3);
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
 /* Textarea specific styling */
-textarea {
-    resize: none;
-    height: 100px; /* Taller textarea for more content */
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Error message styling */
+.error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
 }
 
 /* Button styling */
 .post-job-btn {
-    background-color: #f04f24;
+    background-color: #007bff;
     color: white;
-    font-size: 16px;
-    font-weight: bold;
     padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
 /* Button hover effect */
 .post-job-btn:hover {
-    background-color: #d43e1b;
-    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #0056b3;
+}
+
+/* Popup styling */
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Animation for popup */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Popup content styling */
+.popup-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Checkmark styling */
+.checkmark {
+    color: #28a745;
+    font-size: 20px;
 }
 
 /* Footer Styling */
 .footer {
-    background-color: #f4f4f4;
-    padding: 40px 0;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    margin-top: 50px;
+    padding: 30px 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
 }
 
+/* Footer container styling */
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    text-align: center;
 }
 
+/* Footer header styling */
 .footer h3 {
-    font-size: 22px;
     color: #333;
-    margin-bottom: 20px;
-    font-weight: 700;
+    margin-bottom: 15px;
 }
 
-.footer p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
+/* Social links styling */
 .social-links {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
+/* Social link styling */
 .social-links a {
-    color: #f04f24;
-    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
     margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.3s ease;
 }
 
+/* Social link hover effect */
 .social-links a:hover {
-    color: #d43e1b;
+    text-decoration: underline;
 }
 
+/* Footer bottom styling */
 .footer-bottom {
-    font-size: 12px;
-    color: #aaa;
+    margin-top: 20px;
+    color: #6c757d;
+    font-size: 14px;
 }
 
+/* Footer bottom link styling */
 .footer-bottom a {
-    color: #aaa;
+    color: #007bff;
     text-decoration: none;
-    margin-left: 10px;
-}
-
-.footer-bottom a:hover {
-    color: #f04f24;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .form-row {
-        flex-direction: column; /* Stack inputs vertically */
-        gap: 15px; /* Adjust gap for smaller screens */
+        flex-direction: column;
+        gap: 10px;
     }
-
+    
     .job-post-form {
-        padding: 20px; /* Reduce padding on smaller screens */
-    }
-
-    /* Adjust button size for mobile */
-    .post-job-btn {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-
-    .footer-container {
-        padding: 0 15px; /* Adjust padding in footer */
-    }
-
-    .footer h3 {
-        font-size: 20px; /* Smaller header size */
-    }
-
-    .footer p {
-        font-size: 13px; /* Smaller text in footer */
-    }
-}
-
-@media (max-width: 480px) {
-    .job-post-form {
-        padding: 15px; /* Further reduce padding for very small screens */
-    }
-
-    /* Ensure title size is smaller on very small screens */
-    .job-post-form h1 {
-        font-size: 20px;
-    }
-
-    .footer h3 {
-        font-size: 18px;
-    }
-
-    .footer p {
-        font-size: 12px;
+        padding: 10px;
     }
 }

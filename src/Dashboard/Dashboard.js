@@ -1,13 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Dashboard.css";
 
 function Dashboard() {
-    const jobCategories = [
-        { title: "UI/UX Designer", vacant: 5, totalCV: 20 },
-        { title: "Software Developer", vacant: 10, totalCV: 20 },
-        { title: "SQTA Engineer", vacant: 8, totalCV: 20 },
-        { title: "ML Engineer", vacant: 12, totalCV: 20 },
-    ];
+    const [jobCategories, setJobCategories] = useState([]);
+    const [stats, setStats] = useState({
+        totalPositions: 0,
+        totalVacancies: 0,
+        totalCVCount: 0
+    });
+
+    useEffect(() => {
+        fetchJobs();
+    }, []);
+
+    const fetchJobs = async () => {
+        try {
+            // For now using company_id 1, later we'll get it from auth context
+            const response = await axios.get("http://localhost:8081/job/company/1");
+            
+            // Group jobs by job role
+            const groupedJobs = response.data.reduce((acc, job) => {
+                if (!acc[job.job_role]) {
+                    acc[job.job_role] = {
+                        title: job.job_role,
+                        vacant: 0,
+                        totalCV: 0
+                    };
+                }
+                acc[job.job_role].vacant += job.vacancies;
+                // For now setting a default CV count, later we'll get real data
+                acc[job.job_role].totalCV = 20;
+                return acc;
+            }, {});
+
+            const formattedJobs = Object.values(groupedJobs);
+            setJobCategories(formattedJobs);
+
+            // Update stats
+            setStats({
+                totalPositions: formattedJobs.length,
+                totalVacancies: formattedJobs.reduce((sum, job) => sum + job.vacant, 0),
+                totalCVCount: formattedJobs.reduce((sum, job) => sum + job.totalCV, 0)
+            });
+
+        } catch (err) {
+            console.error("Error fetching jobs:", err);
+        }
+    };
 
     return (
         <div className="dashboard-container">
@@ -16,9 +56,9 @@ function Dashboard() {
                 <p>Search for your desired job matching your skills</p>
             </header>
             <div className="summary-cards">
-                <div className="card">TOTAL POSITION: 4</div>
-                <div className="card">TOTAL VACANCY: 35</div>
-                <div className="card">TOTAL CV COUNT: 1250</div>
+                <div className="card">TOTAL POSITION: {stats.totalPositions}</div>
+                <div className="card">TOTAL VACANCY: {stats.totalVacancies}</div>
+                <div className="card">TOTAL CV COUNT: {stats.totalCVCount}</div>
             </div>
             {jobCategories.map((job, index) => (
                 <div key={index} className="job-category">

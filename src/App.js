@@ -6,11 +6,11 @@ import Dashboard from "./Dashboard/Dashboard";
 import HomeScreen from "./Home/HomeScreen";
 import Login from './LogReg/Login';
 import Reg from "./LogReg/Reg";
+import EmployerRegistration from "./LogReg/EmpReg";
 import Analyser from "./Analyser/Analyser";
 import JobSearchDashboard from "./JobSearchDashboard/JobSearchDashboard";
 import Profile from "./Profile/Profile";
 import "./App.css";
-
 
 function App() {
     return (
@@ -37,6 +37,7 @@ const MainApp = () => {
                     <Route path="/" element={<HomeScreen />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Reg />} />
+                    <Route path="/employer/register" element={<EmployerRegistration />} />
                     <Route path="/JobPost" element={<JobPostForm />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/JobSearchDashboard" element={<JobSearchDashboard />} />
