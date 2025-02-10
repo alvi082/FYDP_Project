@@ -10,27 +10,63 @@ const db = mysql.createConnection({
   database: "analyzer",
 });
 
-router.post("/signup", (req, res) => {
-  const sql =
-    "INSERT INTO employer (name, address, email, phone_number, password, company_name, company_website, company_description, industry_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  const values = [
-    req.body.name,
-    req.body.address,
-    req.body.email,
-    req.body.phone_number,
-    req.body.password,
-    req.body.company_name,
-    req.body.company_website,
-    req.body.company_description,
-    req.body.industry_type,
-  ];
+// Middleware to check if the user is logged in as an employer
+const isEmployer = (req, res, next) => {
+  if (req.session.userType === 'employer') {
+    next();
+  } else {
+    res.status(403).json({ Message: "Access denied. Please login as an employer." });
+  }
+};
 
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Error in MySQL:", err);
-      return res.status(500).json({ error: "Error in database" });
+router.post("/login", (req, res) => {
+  // First try job_seeker table
+  const jobSeekerSql = "SELECT * FROM job_seeker WHERE email = ? AND password = ?";
+  db.query(jobSeekerSql, [req.body.email, req.body.password], (err, jobSeekerResult) => {
+    if (err) return res.json({ Message: "Error inside server" });
+
+    if (jobSeekerResult.length > 0) {
+      req.session.username = jobSeekerResult[0].name;
+      req.session.useremail = jobSeekerResult[0].email;
+      req.session.userType = 'jobseeker';
+      return res.json({
+        Login: true,
+        username: req.session.username,
+        useremail: req.session.useremail,
+        userType: 'jobseeker'
+      });
+    } else {
+      // If not found in job_seeker, try employer table
+      const employerSql = "SELECT * FROM employer WHERE email = ? AND password = ?";
+      db.query(employerSql, [req.body.email, req.body.password], (err, employerResult) => {
+        if (err) return res.json({ Message: "Error inside server" });
+
+        if (employerResult.length > 0) {
+          req.session.username = employerResult[0].name;
+          req.session.useremail = employerResult[0].email;
+          req.session.userType = 'employer';
+          req.session.company_id = employerResult[0].company_id;
+          return res.json({
+            Login: true,
+            username: req.session.username,
+            useremail: req.session.useremail,
+            userType: 'employer'
+          });
+        } else {
+          return res.json({ Login: false });
+        }
+      });
     }
-    return res.status(201).json({ message: "Employer signed up successfully" });
+  });
+});
+
+// Route accessible only after employer login
+router.get("/employer/dashboard", isEmployer, (req, res) => {
+  // You can perform actions specific to the employer here
+  res.json({
+    Message: "Welcome to the employer dashboard",
+    username: req.session.username,
+    useremail: req.session.useremail
   });
 });
 

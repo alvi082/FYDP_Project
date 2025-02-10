@@ -151,8 +151,9 @@ router.get("/company/:companyId", (req, res) => {
 
 // Update a job posting
 router.put("/update/:jobId", (req, res) => {
-    const jobId = req.params.jobId;
+    
     const {
+        jobId =  req.session.company_id,
         jobTitle,
         tags,
         jobRole,

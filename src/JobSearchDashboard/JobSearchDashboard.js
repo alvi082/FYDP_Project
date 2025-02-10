@@ -4,6 +4,33 @@ import "./JobSearchDashboard.css";
 import { Link } from 'react-router-dom';
 
 function JobSearchDashboard() {
+    const [userinfo, setuserinfo] = useState({
+        username: "",
+        email: "",
+      });
+      axios.defaults.withCredentials = true;
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:8081/")
+          .then((res) => {
+            if (res.data.valid) {
+              setuserinfo({
+                username: res.data.username,
+                email: res.data.useremail,
+              });
+            } else {
+              console.log("User  not logged in");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, []);
+
+
+
+
     const [isPopupVisible, setPopupVisible] = useState(false);
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -113,9 +140,9 @@ function JobSearchDashboard() {
             <nav className="navbar">
                 <div className="logo">AlwaysApply</div>
                 <div className="nav-links">
-                    <Link to="/profile"><a href="/src/Profile/Profile">Profile</a></Link>
+                    <Link to="/profile"><a href="/src/Profile/Profile">{userinfo.username}</a></Link>
                     <Link to="/Login">
-                        <button className="login-btn">Alvi</button>
+                        <button className="login-btn">Logout</button>
                     </Link>
                 </div>
             </nav>

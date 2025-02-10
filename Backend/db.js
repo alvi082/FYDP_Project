@@ -5,9 +5,9 @@ import cors from "cors";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import employerRoutes from './employerRoutes.js';
-import authRoutes from './authRoutes.js';
-import jobRoutes from './jobRoutes.js';
+import employerRoutes from "./employerRoutes.js";
+import authRoutes from "./authRoutes.js";
+import jobRoutes from "./jobRoutes.js";
 
 const app = express();
 app.use(
@@ -40,9 +40,9 @@ const db = mysql.createConnection({
 });
 
 // Use the employer routes
-app.use('/employer', employerRoutes);
-app.use('/auth', authRoutes);
-app.use('/job', jobRoutes);
+app.use("/employer", employerRoutes);
+app.use("/auth", authRoutes);
+app.use("/job", jobRoutes);
 
 app.post("/signup", (req, res) => {
   const sql =
@@ -52,7 +52,6 @@ app.post("/signup", (req, res) => {
     req.body.address,
     req.body.email,
     req.body.phone_number,
-    req.body.password,
   ];
 
   db.query(sql, values, (err, result) => {
@@ -72,7 +71,6 @@ app.post("/login", (req, res) => {
     if (result.length > 0) {
       req.session.username = result[0].name;
       req.session.useremail = result[0].email;
-      console.log(req.session.username + " " + req.session.useremail);
       return res.json({
         Login: true,
         username: req.session.username,
@@ -95,9 +93,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/job_seeker", (req, res) => {
-  const sql = "SELECT * FROM job_seeker";
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
+  // Ensure the session variable is set
+  if (!req.session.useremail) {
+    return res.status(401).json({ message: "User  not logged in" });
+  }
+
+  const sql = "SELECT * FROM job_seeker WHERE email = ?";
+  db.query(sql, [req.session.useremail], (err, data) => {
+    if (err) {
+      console.error("Error querying database:", err);
+      return res.status(500).json({ error: "Database query error" });
+    }
     return res.json(data);
   });
 });
@@ -105,10 +111,10 @@ app.get("/job_seeker", (req, res) => {
 // Test database connection
 db.connect((err) => {
   if (err) {
-    console.error('Error connecting to MySQL:', err);
+    console.error("Error connecting to MySQL:", err);
     return;
   }
-  console.log('Connected to MySQL database');
+  console.log("Connected to MySQL database");
 });
 
 app.listen(8081, () => {

@@ -1,27 +1,45 @@
-import React ,{ useState,useEffect }  from "react";
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Importing Link for navigation
 import "./Profile.css";
 import axios from "axios";
-const Profile = () => {
 
-    const [values,setValues]= useState({
-        username:"",
-        email:""
+const Profile = () => {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    address: "",
+    phone: "",
+    password: "",
+  });
+
+  axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/job_seeker")
+      .then((res) => {
+       
+        if (res.data.length > 0) {
+          const userData = res.data[0]; 
+          setValues({
+            username: userData.name, 
+            email: userData.email,
+            address: userData.address,
+            phone: userData.phone_number, 
+            password: "", 
+          });
+        } else {
+          console.log("No user data found");
+        }
       })
-      axios.defaults.withCredentials = true;
-      useEffect(()=>{
-        axios.get('http://localhost:8081/')
-        .then(res =>{
-          setValues({username: res.data.username,email : res.data.usernameemail});
-        })
-        .catch(err => console.log(err))
-    
-       },[])
-    
-       const user = {
-        username:values.username,
-        useremail:values.useremail,
-      };
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+
+  // The rest of your component code...
     return (
         <div className="profile-dashboard">
             {/* Navbar */}
@@ -42,7 +60,7 @@ const Profile = () => {
                     <div className="form-group">
                         <div className="form-control">
                             <label>First Name</label>
-                            <input type="text" defaultValue= {user.username} />
+                            <input type="text" defaultValue= {values.username} />
                         </div>
                         
                     </div>
@@ -56,11 +74,11 @@ const Profile = () => {
                     </div>
                     <div className="form-control">
                         <label>Address</label>
-                        <input type="text" defaultValue="Pallabi,Dhaka" />
+                        <input type="text" defaultValue={values.address} />
                     </div>
                     <div className="form-control">
                         <label>Contact Number</label>
-                        <input type="text" defaultValue="01739288997" />
+                        <input type="text" defaultValue={values.phone} />
                     </div>
                     <div className="form-group">
                         <div className="form-control">
