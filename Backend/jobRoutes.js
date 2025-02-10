@@ -98,8 +98,9 @@ router.get("/all", (req, res) => {
 });
 
 // Search jobs
+// Search jobs
 router.get("/search", (req, res) => {
-    const { search, location, experience } = req.query;
+    const { search, location, experience, minSalary, maxSalary, jobType, workMode, experienceLevel } = req.query;
     let sql = `
         SELECT j.*, c.company_name 
         FROM job j 
@@ -120,6 +121,34 @@ router.get("/search", (req, res) => {
         values.push(locationPattern, locationPattern);
     }
 
+    if (minSalary) {
+        sql += ` AND j.min_salary >= ?`;
+        values.push(minSalary);
+    }
+
+    if (maxSalary) {
+        sql += ` AND j.max_salary <= ?`;
+        values.push(maxSalary);
+    }
+
+    if (jobType) {
+        const jobTypes = jobType.split(',').map(type => type.trim());
+        sql += ` AND j.job_type IN (${jobTypes.map(() => '?').join(',')})`;
+        values.push(...jobTypes);
+    }
+
+    if (workMode) {
+        const workModes = workMode.split(',').map(mode => mode.trim());
+        sql += ` AND j.work_mode IN (${workModes.map(() => '?').join(',')})`;
+        values.push(...workModes);
+    }
+
+    if (experienceLevel) {
+        const experienceLevels = experienceLevel.split(',').map(level => level.trim());
+        sql += ` AND j.job_level IN (${experienceLevels.map(() => '?').join(',')})`;
+        values.push(...experienceLevels);
+    }
+
     sql += ` ORDER BY j.posted_date DESC`;
 
     db.query(sql, values, (err, results) => {
@@ -132,7 +161,7 @@ router.get("/search", (req, res) => {
         }
         return res.json(results);
     });
-});
+});;
 
 // Get jobs by company
 router.get("/company/:companyId", (req, res) => {

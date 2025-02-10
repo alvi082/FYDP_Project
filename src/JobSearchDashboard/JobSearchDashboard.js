@@ -7,29 +7,26 @@ function JobSearchDashboard() {
     const [userinfo, setuserinfo] = useState({
         username: "",
         email: "",
-      });
-      axios.defaults.withCredentials = true;
+    });
+    axios.defaults.withCredentials = true;
 
-      useEffect(() => {
+    useEffect(() => {
         axios
-          .get("http://localhost:8081/")
-          .then((res) => {
-            if (res.data.valid) {
-              setuserinfo({
-                username: res.data.username,
-                email: res.data.useremail,
-              });
-            } else {
-              console.log("User  not logged in");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }, []);
-
-
-
+            .get("http://localhost:8081/")
+            .then((res) => {
+                if (res.data.valid) {
+                    setuserinfo({
+                        username: res.data.username,
+                        email: res.data.useremail,
+                    });
+                } else {
+                    console.log("User  not logged in");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     const [isPopupVisible, setPopupVisible] = useState(false);
     const [jobs, setJobs] = useState([]);
@@ -41,8 +38,8 @@ function JobSearchDashboard() {
         minSalary: "",
         maxSalary: "",
         jobType: {
-            "Full-Time": false,
-            "Part-Time": false,
+            "Full-time": false,
+            "Part-time": false,
             "Internship": false
         },
         workMode: {
@@ -51,9 +48,13 @@ function JobSearchDashboard() {
             "Hybrid": false
         },
         experienceLevel: {
-            "Fresher/Entry-Level": false,
+            "Entry Level": false,
             "Junior": false,
-            "Mid-Level": false
+            "Mid-Level": false,
+            "Senior": false,
+            "Lead": false,
+            "Manager": false,
+
         }
     });
 
@@ -86,9 +87,14 @@ function JobSearchDashboard() {
             const queryParams = new URLSearchParams({
                 search: filters.search,
                 location: filters.location,
-                experience: filters.experience
+                experience: filters.experience,
+                minSalary: filters.minSalary,
+                maxSalary: filters.maxSalary,
+                jobType: Object.keys(filters.jobType).filter(type => filters.jobType[type]).join(','),
+                workMode: Object.keys(filters.workMode).filter(mode => filters.workMode[mode]).join(','),
+                experienceLevel: Object.keys(filters.experienceLevel).filter(level => filters.experienceLevel[level]).join(',')
             }).toString();
-            
+
             const response = await axios.get(`http://localhost:8081/job/search?${queryParams}`);
             const formattedJobs = response.data.map(job => ({
                 id: job.job_id,
