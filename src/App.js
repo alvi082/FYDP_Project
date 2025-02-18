@@ -9,6 +9,7 @@ import Reg from "./LogReg/Reg";
 import Analyser from "./Analyser/Analyser";
 import JobSearchDashboard from "./JobSearchDashboard/JobSearchDashboard";
 import Profile from "./Profile/Profile";
+import JobDetails from "./JobSearchDashboard/JobDetails";
 import "./App.css";
 
 
@@ -40,6 +41,7 @@ const MainApp = () => {
                     <Route path="/JobPost" element={<JobPostForm />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/JobSearchDashboard" element={<JobSearchDashboard />} />
+                    <Route path="/JobSearchDashboard/JobDetails" element={<JobDetails />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/analyser" element={<Analyser />} />
                 </Routes>
