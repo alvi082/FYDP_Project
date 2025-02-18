@@ -52,6 +52,7 @@ app.post("/signup", (req, res) => {
     req.body.address,
     req.body.email,
     req.body.phone_number,
+    req.body.password,
   ];
 
   db.query(sql, values, (err, result) => {

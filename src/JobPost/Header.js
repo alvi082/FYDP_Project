@@ -16,7 +16,6 @@ function Header() {
                     <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link to="/analyser">Analyzer</Link></li>
                     {/* Add more links as needed */}
-                    <li><Link to="/admin">Admin</Link></li>
                 </ul>
             </nav>
             <Link to="/Login"><button className="logout-button">Log Out</button></Link>

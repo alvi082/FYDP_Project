@@ -299,7 +299,7 @@ body {
 .job-card {
     background: #ffffff; /* Neutral background */
     border-radius: 10px; /* Slightly rounded corners */
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     transition: all 0.3s ease; /* Smooth hover transition */
     display: flex;

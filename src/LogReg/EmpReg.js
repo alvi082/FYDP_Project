@@ -124,13 +124,7 @@ const EmployerRegistration = () => {
                 onChange={(event) => setPassword(event.target.value)}
                 required
               />
-              <button
-                type="button"
-                className="show-password-btn"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
+             
             </div>
             <button type="submit" className="register-button">
               Register as Employer
