@@ -64,6 +64,27 @@ app.post("/signup", (req, res) => {
   });
 });
 
+app.post("/employersignup", (req, res) => {
+  const { name, address, email, phone_number, password, company_name, company_website, company_description, industry_type } = req.body;
+
+  // Basic validation
+  if (!name || !email || !password || !company_name) {
+    return res.status(400).json({ Message: "Please fill in all required fields." });
+  }
+
+  // SQL query to insert the new employer into the database
+  const sql = "INSERT INTO employer (name, address, email, phone_number, password, company_name, company_website, company_description, industry_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(sql, [name, address, email, phone_number, password, company_name, company_website, company_description, industry_type], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ Message: "Error while registering employer." });
+    }
+    return res.status(201).json({ Message: "Employer registered successfully!" });
+  });
+
+});
+
+
 app.post("/login", (req, res) => {
   const sql = "SELECT * FROM job_seeker WHERE email = ? AND password = ?";
   db.query(sql, [req.body.email, req.body.password], (err, result) => {

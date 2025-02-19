@@ -20,38 +20,48 @@ const EmployerRegistration = () => {
   const navigate = useNavigate();
 
   const handleRegister = (event) => {
+    event.preventDefault(); // Prevent default form submission
+  
     const values = {
-      name: name,
-      address: address,
-      email: email,
-      phone_number: phone_number,
-      password: password,
-      company_name: company_name,
-      company_website: company_website,
-      company_description: company_description,
-      industry_type: industry_type
+      name,
+      address,
+      email,
+      phone_number,
+      password,
+      company_name,
+      company_website,
+      company_description,
+      industry_type,
     };
-    
+  
     if (name && email && password && company_name) {
-      event.preventDefault();
       axios
-        .post("http://localhost:8081/employer/signup", values)
+        .post("http://localhost:8081/employersignup", values)
         .then((res) => {
           console.log(res);
-          setPopupMessage('Registration Successful!');
-          setShowPopup(true);
-
-          setTimeout(() => {
-            setShowPopup(false);
-            navigate("/login");
-          }, 2000);
+          if (res.status === 201) {
+            setPopupMessage('Registration Successful!');
+            setShowPopup(true);
+            setTimeout(() => {
+              setShowPopup(false);
+              navigate("/login");
+            }, 2000);
+          }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.error(err);
+          // Check if the error response exists and has a message
+          const errorMessage = err.response && err.response.data && err.response.data.Message
+            ? err.response.data.Message
+            : 'Unknown error';
+          setPopupMessage('Registration Failed: ' + errorMessage);
+          setShowPopup(true);
+        });
     } else {
       alert("Please fill in all required fields");
     }
   };
-
+  
   return (
     <div className="registration-container">
       <div className="registration-wrapper">
