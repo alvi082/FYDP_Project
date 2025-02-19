@@ -50,7 +50,7 @@ function JobSearchDashboard() {
         experienceLevel: {
             "Entry Level": false,
             "Junior": false,
-            "Mid-Level": false,
+            "Mid Level": false,
             "Senior": false,
             "Lead": false,
             "Manager": false,

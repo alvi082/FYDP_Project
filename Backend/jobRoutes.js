@@ -13,6 +13,7 @@ const db = mysql.createConnection({
 // Create a new job posting
 router.post("/create", (req, res) => {
     const {
+        company_id,
         jobTitle,
         tags,
         jobRole,
@@ -43,10 +44,9 @@ router.post("/create", (req, res) => {
         is_active
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), TRUE)`;
 
-    // For now, using a default company_id of 1 for testing
-    // In production, this should come from the authenticated user's session
+    
     const values = [
-        1, // company_id - should come from session
+        company_id,
         jobTitle,
         tags,
         jobRole,
@@ -78,10 +78,13 @@ router.post("/create", (req, res) => {
 // Get all jobs
 router.get("/all", (req, res) => {
     const sql = `
-        SELECT j.*, c.company_name 
+        SELECT j.job_id, j.company_id, j.job_title, j.tags, j.job_role, 
+               j.min_salary, j.max_salary, j.vacancies, j.job_level, 
+               j.country, j.city, j.job_type, j.job_description, 
+               j.posted_date, c.company_name 
         FROM job j 
-        LEFT JOIN company c ON j.company_id = c.company_id 
-        WHERE j.is_active = true
+        LEFT JOIN employer c ON j.company_id = c.id 
+        WHERE j.is_active = TRUE
         ORDER BY j.posted_date DESC
     `;
     
@@ -93,12 +96,11 @@ router.get("/all", (req, res) => {
                 details: err.message 
             });
         }
+        console.log("Fetched jobs:", results); 
         return res.json(results);
-    });
+    }); 
 });
 
-// Search jobs
-// Search jobs
 router.get("/search", (req, res) => {
     const { search, location, experience, minSalary, maxSalary, jobType, workMode, experienceLevel } = req.query;
     let sql = `

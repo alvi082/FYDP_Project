@@ -10,14 +10,39 @@ function Dashboard() {
         totalCVCount: 0
     });
 
+    const [companyId, setCompanyId] = useState("");
+
+    // Ensure credentials are sent with every request
+    axios.defaults.withCredentials = true;
+
     useEffect(() => {
-        fetchJobs();
+        const fetchSessionData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/auth/employer/dashboard");
+                
+                if (response.data && response.data.company_id) {
+                    setCompanyId(response.data.company_id); 
+                } else {
+                    console.log("No user data found");
+                }
+            } catch (error) {
+                console.error("Error fetching session data:", error);
+            }
+        };
+
+        fetchSessionData();
     }, []);
+
+    useEffect(() => {
+        // Fetch jobs only if companyId is set
+        if (companyId) {
+            fetchJobs();
+        }
+    }, [companyId]); // Dependency on companyId
 
     const fetchJobs = async () => {
         try {
-            // For now using company_id 1, later we'll get it from auth context
-            const response = await axios.get("http://localhost:8081/job/company/1");
+            const response = await axios.get(`http://localhost:8081/job/company/${companyId}`);
             
             // Group jobs by job role
             const groupedJobs = response.data.reduce((acc, job) => {
@@ -48,6 +73,7 @@ function Dashboard() {
             console.error("Error fetching jobs:", err);
         }
     };
+
 
     return (
         <div className="dashboard-container">

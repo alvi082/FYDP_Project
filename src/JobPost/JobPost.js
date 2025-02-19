@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./JobPost.css";
 
 function JobPostForm() {
     const [formData, setFormData] = useState({
+        company_id: "", // Initialize company_id
         jobTitle: "",
         tags: "",
         jobRole: "",
@@ -14,16 +15,37 @@ function JobPostForm() {
         jobLevel: "",
         country: "",
         city: "",
-        jobType: "Full-time", // Added jobType with default value
+        jobType: "Full-time",
         jobDescription: ""
     });
-    
+
     const [jobRoles, setJobRoles] = useState([]);
     const [jobLevels, setJobLevels] = useState([]);
     const [errors, setErrors] = useState({});
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchSessionData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/auth/employer/dashboard", { withCredentials: true });
+                if (response.data && response.data.company_id) {
+                    
+                    setFormData(prev => ({
+                        ...prev,
+                        company_id: response.data.company_id 
+                    }));
+                } else {
+                    console.log("No user data found");
+                }
+            } catch (error) {
+                console.error("Error fetching session data:", error);
+            }
+        };
+
+        fetchSessionData();
+    }, []);
 
     useEffect(() => {
         // Fetch job roles and levels when component mounts
@@ -98,6 +120,7 @@ function JobPostForm() {
             
             // Clear form
             setFormData({
+                company_id: formData.company_id, // Keep the company_id
                 jobTitle: "",
                 tags: "",
                 jobRole: "",
@@ -120,6 +143,9 @@ function JobPostForm() {
             console.error("Error posting job:", error);
             setPopupMessage("Error posting job. Please try again.");
             setShowPopup(true);
+            setTimeout(() => {
+                setShowPopup(false);
+            }, 2000);
         }
     };
 

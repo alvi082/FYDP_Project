@@ -36,6 +36,8 @@ router.post("/login", (req, res) => {
           req.session.username = employerResult[0].name;
           req.session.useremail = employerResult[0].email;
           req.session.userType = 'employer';
+          req.session.company_name = employerResult[0].company_name;
+          req.session.company_id = employerResult[0].id; 
           return res.json({
             Login: true,
             username: req.session.username,
@@ -47,6 +49,24 @@ router.post("/login", (req, res) => {
         }
       });
     }
+  });
+});
+
+
+const isEmployer = (req, res, next) => {
+  if (req.session.userType === 'employer') {
+    next();
+  } else {
+    res.status(403).json({ Message: "Access denied. Please login as an employer." });
+  }
+};
+
+router.get("/employer/dashboard", isEmployer, (req, res) => {
+  res.json({
+    Message: "Welcome to the employer dashboard",
+    company_id: req.session.company_id,
+    useremail: req.session.useremail,
+    company_name: req.session.company_name
   });
 });
 
