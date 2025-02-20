@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Dashboard.css";
-
+import { Link } from "react-router-dom";
 function Dashboard() {
     const [jobCategories, setJobCategories] = useState([]);
     const [stats, setStats] = useState({
@@ -12,7 +12,6 @@ function Dashboard() {
 
     const [companyId, setCompanyId] = useState("");
 
-    // Ensure credentials are sent with every request
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
@@ -97,7 +96,7 @@ function Dashboard() {
                         {Array.from({ length: job.totalCV }, (_, i) => (
                             <div key={i} className="cv-item">ShuvoCV.pdf</div>
                         ))}
-                        <button className="summarize-button">Summarize</button>
+                       <Link to="/analyser"> <button className="summarize-button">Analyse</button></Link>
                     </div>
                 </div>
             ))}

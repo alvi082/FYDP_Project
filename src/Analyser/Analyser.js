@@ -12,7 +12,7 @@ function Dashboard() {
     return (
         <div className="dashboard-container">
             <header>
-                <h1>CV Management Dashboard</h1>
+                <h1>Analyser Dashboard</h1>
                 <p>Search for your desired job matching your skills</p>
             </header>
             <div className="summary-cards">

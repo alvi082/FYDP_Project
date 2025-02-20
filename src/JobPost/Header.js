@@ -36,7 +36,6 @@ function Header() {
                 <ul>
                     <li><Link to="/JobPost">Post</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link></li>
-                    <li><Link to="/analyser">Analyzer</Link></li>
                 </ul>
             </nav>
             <Link to="/Login"><button className="logout-button">Log Out</button></Link>
