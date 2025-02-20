@@ -19,6 +19,7 @@ header h1 {
     font-weight: bold;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    border-bottom: 2px solid red;
 }
 
 /* Summary Cards */
@@ -226,3 +227,83 @@ header h1 {
         font-size: 0.8rem; /* Compact links for mobile */
     }
 }
+
+
+
+
+
+
+.table-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .cv-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    background-color: white;
+  }
+  
+  .cv-table th,
+  .cv-table td {
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  .cv-table thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .cv-table th {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .rank-header {
+    width: 15%;
+    text-align: center;
+  }
+  
+  .name-header {
+    width: 60%;
+  }
+  
+  .match-header {
+    width: 25%;
+    text-align: right;
+  }
+  
+  .cv-table tbody tr {
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .cv-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  .rank-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #3498db;
+  }
+  
+  .name-cell {
+    color: #2c3e50;
+  }
+  
+  .match-cell {
+    text-align: right;
+    color: #27ae60;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .cv-table th,
+    .cv-table td {
+      padding: 0.75rem;
+    }
+  }
