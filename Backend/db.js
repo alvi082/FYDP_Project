@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import employerRoutes from "./employerRoutes.js";
 import authRoutes from "./authRoutes.js";
 import jobRoutes from "./jobRoutes.js";
+import { useRevalidator } from "react-router-dom";
 
 const app = express();
 app.use(
@@ -91,6 +92,7 @@ app.post("/login", (req, res) => {
     if (err) return res.json({ Message: "Error inside server" });
 
     if (result.length > 0) {
+      req.session.user_id=result[0].user_id;
       req.session.username = result[0].name;
       req.session.useremail = result[0].email;
       return res.json({
@@ -106,6 +108,7 @@ app.get("/", (req, res) => {
   if (req.session.username) {
     return res.json({
       valid: true,
+      user_id:req.session.user_id,
       username: req.session.username,
       useremail: req.session.useremail,
     });

@@ -1,34 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./JobSearchDashboard.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function JobSearchDashboard() {
+    const navigate = useNavigate();
     const [userinfo, setuserinfo] = useState({
+        user_id: "",
         username: "",
         email: "",
     });
-    axios.defaults.withCredentials = true;
-
-    useEffect(() => {
-        axios
-            .get("http://localhost:8081/")
-            .then((res) => {
-                if (res.data.valid) {
-                    setuserinfo({
-                        username: res.data.username,
-                        email: res.data.useremail,
-                    });
-                } else {
-                    console.log("User  not logged in");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
     const [isPopupVisible, setPopupVisible] = useState(false);
+    const [showUploadPopup, setShowUploadPopup] = useState(false);
+    const [selectedJobId, setSelectedJobId] = useState(null);
+    const [cvFile, setCvFile] = useState(null);
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({
@@ -54,13 +39,26 @@ function JobSearchDashboard() {
             "Senior": false,
             "Lead": false,
             "Manager": false,
-
         }
     });
 
+    axios.defaults.withCredentials = true;
+
     useEffect(() => {
-        fetchJobs();
+        axios.get("http://localhost:8081/")
+            .then((res) => {
+                if (res.data.valid) {
+                    setuserinfo({
+                        user_id: res.data.user_id,
+                        username: res.data.username,
+                        email: res.data.useremail,
+                    });
+                }
+            })
+            .catch((err) => console.log(err));
     }, []);
+
+    useEffect(() => { fetchJobs(); }, []);
 
     const fetchJobs = async () => {
         try {
@@ -72,7 +70,7 @@ function JobSearchDashboard() {
                 salary: `${job.min_salary ? job.min_salary : ''} - ${job.max_salary ? job.max_salary : ''}`,
                 company: job.company_name || "Company Name",
                 location: `${job.city}, ${job.country}`,
-                applicants: "0+" // We'll update this when we have applications table
+                applicants: "0+"
             }));
             setJobs(formattedJobs);
             setLoading(false);
@@ -111,16 +109,33 @@ function JobSearchDashboard() {
         }
     };
 
-    const handleApply = async (jobId) => {
+    const handleApply = (jobId) => {
+        setSelectedJobId(jobId);
+        setShowUploadPopup(true);
+    };
+
+    const handleCVUpload = async (e) => {
+        e.preventDefault();
+        if (!cvFile) {
+            alert('Please select a CV file');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('cv', cvFile);
+        formData.append('user_id', userinfo.user_id);
+        formData.append('job_id', selectedJobId);
+
         try {
-            // We'll implement this when we have the applications table
-            // await axios.post(`http://localhost:8081/job/apply/${jobId}`);
+            await axios.post('http://localhost:8081/job/cv/upload', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+            setShowUploadPopup(false);
             setPopupVisible(true);
-            setTimeout(() => {
-                setPopupVisible(false);
-            }, 3000);
+            setTimeout(() => setPopupVisible(false), 3000);
         } catch (err) {
-            console.error("Error applying to job:", err);
+            console.error("Error uploading CV:", err);
+            alert('Failed to upload CV');
         }
     };
 
@@ -128,16 +143,10 @@ function JobSearchDashboard() {
         if (filterType === 'jobType' || filterType === 'workMode' || filterType === 'experienceLevel') {
             setFilters(prev => ({
                 ...prev,
-                [filterType]: {
-                    ...prev[filterType],
-                    [value]: e.target.checked
-                }
+                [filterType]: { ...prev[filterType], [value]: e.target.checked }
             }));
         } else {
-            setFilters(prev => ({
-                ...prev,
-                [filterType]: e.target.value
-            }));
+            setFilters(prev => ({ ...prev, [filterType]: e.target.value }));
         }
     };
 
@@ -146,7 +155,7 @@ function JobSearchDashboard() {
             <nav className="navbar">
                 <div className="logo">AlwaysApply</div>
                 <div className="nav-links">
-                    <Link to="/profile"><a href="/src/Profile/Profile">{userinfo.username}</a></Link>
+                    <Link to="/profile">{userinfo.username}</Link>
                     <Link to="/Login">
                         <button className="login-btn">Logout</button>
                     </Link>
@@ -157,20 +166,20 @@ function JobSearchDashboard() {
                 <h1>Job Search</h1>
                 <p>Search for your desired job matching your skills</p>
                 <div className="search-bar">
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder="Enter Job Title"
                         value={filters.search}
                         onChange={(e) => handleFilterChange(e, 'search')}
                     />
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder="Enter Location"
                         value={filters.location}
                         onChange={(e) => handleFilterChange(e, 'location')}
                     />
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder="Years of Experience"
                         value={filters.experience}
                         onChange={(e) => handleFilterChange(e, 'experience')}
@@ -180,7 +189,7 @@ function JobSearchDashboard() {
             </section>
 
             <div className="content">
-                <aside className="filter">
+            <aside className="filter">
                     <h3>Filter</h3>
                     <div className="filter-group">
                         <h4>Salary Range</h4>
@@ -247,7 +256,9 @@ function JobSearchDashboard() {
                                     <p>Location: {job.location}</p>
                                     <p>{job.applicants} applicants</p>
                                     <div className="job-actions">
-                                        <button className="view-btn">View Details</button>
+                                        <button className="view-btn" onClick={() => navigate(`/JobSearchDashboard/JobDetails/${job.id}`)}>
+                                            View Details
+                                        </button>
                                         <button className="apply-btn" onClick={() => handleApply(job.id)}>
                                             Apply Now
                                         </button>
@@ -261,6 +272,32 @@ function JobSearchDashboard() {
                     </div>
                 </main>
             </div>
+
+            {showUploadPopup && (
+                <div className="popup">
+                    <div className="popup-content upload-popup">
+                        <h3>Upload Your CV</h3>
+                        <form onSubmit={handleCVUpload}>
+                            <input
+                                type="file"
+                                accept=".pdf,.doc,.docx"
+                                onChange={(e) => setCvFile(e.target.files[0])}
+                                required
+                            />
+                            <div className="popup-buttons">
+                                <button type="submit" className="upload-btn">Upload</button>
+                                <button
+                                    type="button"
+                                    className="cancel-btn"
+                                    onClick={() => setShowUploadPopup(false)}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
 
             {isPopupVisible && (
                 <div className="popup">

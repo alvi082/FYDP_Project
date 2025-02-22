@@ -28,6 +28,7 @@ router.post("/login", (req, res) => {
       if (err) return res.json({ Message: "Error inside server" });
 
       if (jobSeekerResult.length > 0) {
+          req.session.user_id=  jobSeekerResult[0].user_id;
           req.session.username = jobSeekerResult[0].name;
           req.session.useremail = jobSeekerResult[0].email;
           req.session.userType = 'jobseeker';
